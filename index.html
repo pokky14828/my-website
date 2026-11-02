@@ -73,6 +73,30 @@ h2.section-title{font-size:clamp(28px,3vw,40px);line-height:1.25;margin:10px 0 1
 .service-card ul{padding:0;margin:0;list-style:none;color:#33445c;font-size:13px}
 .service-card li{margin:8px 0;display:flex;gap:9px}
 .service-card li:before{content:"✓";font-weight:900;color:var(--blue)}
+.slide-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.services{grid-template-columns:repeat(2,1fr)}
+.why{background:#f6f9fd}
+.why-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:center}
+.why-photo{border-radius:24px;overflow:hidden;box-shadow:0 24px 60px #142d4a22}
+.why-photo img{display:block;width:100%;height:520px;object-fit:cover;object-position:center 60%}
+.why-list{display:grid;gap:12px;margin-top:24px}
+.why-item{display:flex;gap:13px;align-items:flex-start;padding:15px 17px;background:white;border:1px solid #e5ebf3;border-radius:14px;color:#33445c;font-size:15px}
+.why-item b{color:var(--blue);font-weight:900}
+@media(max-width:850px){.services{grid-template-columns:1fr}.why-grid{grid-template-columns:1fr;gap:30px}.why-photo img{height:380px}}
+.portfolio{background:white}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:240px;gap:14px}
+.g-item{position:relative;margin:0;border-radius:18px;overflow:hidden;cursor:zoom-in;background:#0a2344;box-shadow:0 12px 30px #142d4a18}
+.g-item.feat{grid-column:span 2;grid-row:span 2}
+.g-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.g-item:hover img{transform:scale(1.05)}
+.g-item figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 16px 13px;color:white;font-size:13px;font-weight:600;background:linear-gradient(0deg,#06152acc,transparent)}
+.g-title{font-size:22px;color:var(--navy);margin:0 0 4px}
+.g-sub{color:var(--muted);font-size:14px;margin:0 0 18px}
+.g-item.wide{grid-column:span 2}
+.lightbox{position:fixed;inset:0;z-index:100;background:#030b17ee;display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:100%;max-height:92vh;border-radius:12px}
+@media(max-width:850px){.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:180px}.g-item.feat{grid-column:span 2;grid-row:span 1}}
 .band{padding:54px 0;background:#eaf1fa}
 .band-inner{display:flex;align-items:center;justify-content:space-between;gap:25px}
 .band h2{font-size:clamp(24px,3vw,34px);line-height:1.3;color:var(--navy);margin:0 0 9px}
@@ -100,13 +124,33 @@ footer strong{color:white}
 </style>
 </head>
 <body>
+<!--
+============================================================
+ โครงสร้างไฟล์ (ต้องวางโฟลเดอร์ images ไว้ข้าง index.html)
+ index.html
+ images/
+   slider/                      รูปสไลด์หน้าแรก (Group 1-3)
+     group1-construction.jpg    สำรองของ Group 1 (ใช้เมื่อรูป Jotun โหลดไม่ได้)
+     group2-electrical.jpg      Group 2 ตู้คอนโทรลไฟฟ้า
+     group3-automation.jpg      Group 3 เครื่องจักรอัตโนมัติ
+   about/team.jpg               รูปทีมงาน ส่วน "ทำไมต้องเลือกเรา"
+   portfolio/                   ส่วน "ผลงาน"
+     warehouse/                 ติดตั้งคลังสินค้า
+     outdoor-electrical/        ติดตั้งระบบไฟฟ้านอกอาคาร
+     solar/                     ติดตั้งระบบโซลาร์เซลล์
+     robot-control/             ติดตั้ง Robot พร้อมตู้คอนโทรล
+     others/                    อื่นๆ
+ ต้องการเปลี่ยนรูป: เปลี่ยนไฟล์ในโฟลเดอร์เดิม (ชื่อเดิม) หรือแก้ src ที่คอมเมนต์บอกไว้เหนือแต่ละ <img>
+============================================================
+-->
+
 <header>
   <div class="container nav">
     <a class="brand" href="#home" aria-label="TNP Fight Construction หน้าแรก">
       <span class="logo">TNP</span><span>TNP FIGHT CONSTRUCTION<small>INDUSTRIAL SOLUTIONS</small></span>
     </a>
     <nav aria-label="เมนูหลัก">
-      <a href="#home">หน้าแรก</a><a href="#services">บริการของเรา</a><a href="#contact">ติดต่อเรา</a>
+      <a href="#home">หน้าแรก</a><a href="#services">บริการของเรา</a><a href="#portfolio">ผลงาน</a><a href="#why">ทำไมต้องเลือกเรา</a><a href="#contact">ติดต่อเรา</a>
     </nav>
     <a class="nav-cta" href="tel:0929239242">☎ ติดต่อสอบถาม</a>
   </div>
@@ -116,24 +160,28 @@ footer strong{color:white}
 <section class="hero" id="home">
   <div class="container hero-grid">
     <div>
-      <div class="eyebrow"><span class="dot"></span> INDUSTRIAL CONSTRUCTION & AUTOMATION</div>
+      <div class="eyebrow"><span class="dot"></span> CONSTRUCTION • ELECTRICAL • AUTOMATION • SOLAR</div>
       <h1>โซลูชันโรงงาน<br><span>ครบจบในที่เดียว</span></h1>
       <p class="hero-copy">TNP Fight Construction ให้บริการรับเหมาต่อเติมโรงงานอุตสาหกรรม งานติดตั้งและออกแบบตู้คอนโทรลไฟฟ้า รวมถึงออกแบบเครื่องจักรระบบอัตโนมัติ เพื่อสนับสนุนการทำงานของโรงงานอย่างมีประสิทธิภาพ</p>
       <div class="hero-actions"><a class="btn btn-primary" href="#services">สำรวจบริการของเรา ↗</a><a class="btn btn-outline" href="#contact">ปรึกษาโครงการ</a></div>
-      <div class="trust"><span><b class="check">✓</b> งานก่อสร้างอุตสาหกรรม</span><span><b class="check">✓</b> ระบบไฟฟ้าและควบคุม</span><span><b class="check">✓</b> ระบบอัตโนมัติ</span></div>
+      <div class="trust"><span><b class="check">✓</b> งานก่อสร้างอุตสาหกรรม</span><span><b class="check">✓</b> ระบบไฟฟ้าและควบคุม</span><span><b class="check">✓</b> ระบบอัตโนมัติ</span><span><b class="check">✓</b> พลังงานทางเลือก</span></div>
     </div>
     <div class="slider" aria-label="สไลด์บริการของบริษัท">
       <div class="slider-controls"><button class="circle-btn" id="prev" aria-label="สไลด์ก่อนหน้า">‹</button><button class="circle-btn" id="next" aria-label="สไลด์ถัดไป">›</button></div>
       <article class="slide active">
-        <div class="slide-art"><div class="blueprint"></div><div class="art-icon"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3"><path d="M25 165V70L100 25l75 45v95"/><path d="M15 165h170M45 165v-58h36v58M105 87h45v30h-45zM105 132h45v33h-45zM45 70h25v22H45z"/><path d="M20 55l80-48 80 48M55 38v-15h20v3"/></svg></div></div>
+        <div class="slide-art"><!-- รูป: URL ภายนอก (Jotun) ถ้าโหลดไม่ได้จะใช้ images/slider/group1-construction.jpg แทนอัตโนมัติ
+     อยากใช้รูปของตัวเอง: เปลี่ยน src เป็น "images/slider/group1-construction.jpg" -->
+<img src="https://www.jotun.com/globalassets-b2b/b2b/light-industry/hero_industrial-and-oem.jpg?format=webp&width=752&height=470&quality=70" onerror="this.onerror=null;this.src='images/slider/group1-construction.jpg'" alt="ต่อเติมและปรับปรุงโรงงานอุตสาหกรรม"></div>
         <div class="slide-copy"><span class="slide-num">GROUP 01 / CONSTRUCTION</span><h2>ต่อเติมและปรับปรุง<br>พื้นที่โรงงานอุตสาหกรรม</h2><p>วางแผนพื้นที่และงานต่อเติมให้สอดคล้องกับการใช้งานจริงของโรงงาน</p><span class="slide-tag">Industrial Facility</span></div>
       </article>
       <article class="slide">
-        <div class="slide-art" style="background:linear-gradient(145deg,#10294b,#176d9a)"><div class="blueprint"></div><div class="art-icon"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3"><rect x="38" y="25" width="124" height="150" rx="7"/><rect x="53" y="42" width="94" height="32" rx="3"/><circle cx="66" cy="58" r="4"/><circle cx="80" cy="58" r="4"/><path d="M55 91h90M55 104h90M55 117h42M55 143h90"/><circle cx="129" cy="130" r="10"/><path d="M129 120v20M119 130h20"/></svg></div></div>
+        <div class="slide-art" style="background:linear-gradient(145deg,#10294b,#176d9a)"><!-- รูป: images/slider/group2-electrical.jpg (ต้นฉบับ: 1793616731974_image.jpeg) -->
+<img src="images/slider/group2-electrical.jpg" alt="ตู้คอนโทรลไฟฟ้า"></div>
         <div class="slide-copy"><span class="slide-num">GROUP 02 / ELECTRICAL</span><h2>ออกแบบและติดตั้ง<br>ตู้คอนโทรลไฟฟ้า</h2><p>งานประกอบตู้ควบคุมและติดตั้งระบบไฟฟ้าสำหรับโรงงานอุตสาหกรรม</p><span class="slide-tag">Control Panel & Electrical</span></div>
       </article>
       <article class="slide">
-        <div class="slide-art" style="background:linear-gradient(145deg,#092644,#165c78)"><div class="blueprint"></div><div class="art-icon"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3"><path d="M30 165h140M48 165V92h36v73M116 165V52h35v113"/><circle cx="65" cy="74" r="18"/><path d="M65 56V42M47 74H32M83 74h15M65 92v14M98 42h18M98 42v25h18M133 52V30h25"/><path d="M48 115h36M48 133h36M116 91h35M116 110h35M116 129h35"/></svg></div></div>
+        <div class="slide-art" style="background:linear-gradient(145deg,#092644,#165c78)"><!-- รูป: images/slider/group3-automation.jpg (ต้นฉบับ: 1793616659849_image.jpeg) -->
+<img src="images/slider/group3-automation.jpg" alt="เครื่องจักรระบบอัตโนมัติ"></div>
         <div class="slide-copy"><span class="slide-num">GROUP 03 / AUTOMATION</span><h2>ออกแบบเครื่องจักร<br>และระบบอัตโนมัติ</h2><p>พัฒนาแนวทางเครื่องจักรและระบบอัตโนมัติเพื่อสนับสนุนกระบวนการผลิต</p><span class="slide-tag">Machine Design & Automation</span></div>
       </article>
       <div class="slide-dots"><button class="active" aria-label="ไปสไลด์ 1"></button><button aria-label="ไปสไลด์ 2"></button><button aria-label="ไปสไลด์ 3"></button></div>
@@ -147,22 +195,137 @@ footer strong{color:white}
     <div class="services">
       <article class="service-card">
         <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V7l9-4 9 4v14M2 21h20M7 21v-7h4v7M14 10h3M14 14h3M7 8h3"/></svg></div>
-        <div class="number">GROUP 01</div><h3>รับเหมาต่อเติมภายในโรงงานอุตสาหกรรม</h3>
-        <p>บริการงานต่อเติมและปรับปรุงพื้นที่ภายในโรงงาน ให้เหมาะสมกับรูปแบบการผลิตและการใช้งาน</p>
-        <ul><li>งานต่อเติมและปรับปรุงพื้นที่</li><li>งานก่อสร้างภายในโรงงาน</li><li>ปรับพื้นที่ให้สอดคล้องกับการใช้งาน</li></ul>
+        <div class="number">GROUP 01</div><h3>งานก่อสร้างและปรับปรุงอาคาร</h3>
+        <p>รับเหมาก่อสร้างทั่วไป ทั้งอาคารพักอาศัย อาคารพาณิชย์ และอาคารสาธารณะ</p>
+        <ul><li>รับเหมาก่อสร้างทั่วไป อาคารพักอาศัย พาณิชย์ และสาธารณะ</li><li>ต่อเติม ปรับปรุง และซ่อมแซมอาคาร ทั้งภายในและภายนอก</li></ul>
       </article>
       <article class="service-card">
         <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M7 6h10M7 10h10M7 14h4M7 18h10"/><circle cx="16" cy="14" r="1"/></svg></div>
-        <div class="number">GROUP 02</div><h3>รับเหมา ติดตั้ง ออกแบบ และประกอบตู้คอนโทรลไฟฟ้า</h3>
-        <p>งานตู้ควบคุมไฟฟ้าและระบบไฟฟ้าสำหรับการใช้งานในโรงงานอุตสาหกรรม</p>
-        <ul><li>ออกแบบและประกอบตู้คอนโทรล</li><li>ติดตั้งระบบไฟฟ้าในโรงงาน</li><li>งานควบคุมอุปกรณ์และเครื่องจักร</li></ul>
+        <div class="number">GROUP 02</div><h3>งานระบบไฟฟ้า</h3>
+        <p>ติดตั้งระบบไฟฟ้าแสงสว่างและระบบไฟฟ้ากำลังสำหรับอาคาร</p>
+        <ul><li>ติดตั้งระบบแสงสว่างทั้งระบบ</li><li>ติดตั้งระบบไฟฟ้ากำลังภายในอาคาร</li><li>ติดตั้งระบบไฟฟ้ากำลังภายนอกอาคาร</li></ul>
       </article>
       <article class="service-card">
         <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 21V9h5v12M15 21V3h5v18M2 21h20M9 12h6M9 16h6M12 12V7h3"/><circle cx="12" cy="5" r="2"/></svg></div>
-        <div class="number">GROUP 03</div><h3>รับเหมาออกแบบเครื่องจักรระบบอัตโนมัติ</h3>
-        <p>ออกแบบแนวทางเครื่องจักรและระบบอัตโนมัติให้สอดคล้องกับกระบวนการทำงานของโรงงาน</p>
-        <ul><li>ออกแบบเครื่องจักรอุตสาหกรรม</li><li>แนวทางระบบอัตโนมัติ</li><li>สนับสนุนการพัฒนากระบวนการผลิต</li></ul>
+        <div class="number">GROUP 03</div><h3>งานระบบอัจฉริยะและอัตโนมัติ</h3>
+        <p>ระบบ IoT ออโตเมชัน และงานเครื่องจักรสำหรับโรงงานและอาคาร</p>
+        <ul><li>งานระบบ IoT (Internet of Things)</li><li>งานระบบออโตเมชัน (Automation System)</li><li>งานติดตั้งและถอนย้ายเครื่องจักร</li><li>งานคอมมิชชันนิ่งระบบ</li><li>งานเขียนและติดตั้งโปรแกรม PLC</li></ul>
       </article>
+      <article class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></div>
+        <div class="number">GROUP 04</div><h3>พลังงานทางเลือก</h3>
+        <p>ออกแบบและติดตั้งระบบพลังงานแสงอาทิตย์ เพื่อลดค่าไฟและใช้พลังงานอย่างยั่งยืน</p>
+        <ul><li>ออกแบบระบบโซลาร์เซลล์</li><li>ติดตั้งระบบโซลาร์เซลล์</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section portfolio" id="portfolio">
+  <div class="container">
+    <div class="section-head"><div class="kicker">Our Projects</div><h2 class="section-title">ผลงานของเรา</h2><p>ตัวอย่างงานติดตั้งที่ผ่านมา ทั้งงานคลังสินค้า ระบบไฟฟ้านอกอาคาร โซลาร์เซลล์ หุ่นยนต์อุตสาหกรรม และงานอื่นๆ</p></div>
+    <h3 class="g-title">ติดตั้งคลังสินค้า</h3>
+    <p class="g-sub">งานติดตั้งโครงสร้างชั้นวางสินค้า ชั้นลอย และงานประกอบภายในคลังสินค้า</p>
+    <!-- โฟลเดอร์รูปของกลุ่มนี้: images/portfolio/warehouse/ -->
+<div class="gallery">
+<figure class="g-item feat"><!-- รูป: images/portfolio/warehouse/IMG_7302.jpg (ต้นฉบับ: IMG_7302.jpeg) -->
+<img src="images/portfolio/warehouse/IMG_7302.jpg" alt="ชั้นลอยและโครงสร้างชั้นวางสินค้า" loading="lazy"><figcaption>ชั้นลอยและโครงสร้างชั้นวางสินค้า</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/warehouse/IMG_7301.jpg (ต้นฉบับ: IMG_7301.jpeg) -->
+<img src="images/portfolio/warehouse/IMG_7301.jpg" alt="ประตูนิรภัยและชั้นวางสินค้าแบบลูกกลิ้ง" loading="lazy"><figcaption>ประตูนิรภัยและชั้นวางสินค้าแบบลูกกลิ้ง</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/warehouse/IMG_7300.jpg (ต้นฉบับ: IMG_7300.jpeg) -->
+<img src="images/portfolio/warehouse/IMG_7300.jpg" alt="ติดตั้งโครงสร้างชั้นวางสินค้าสูง" loading="lazy"><figcaption>ติดตั้งโครงสร้างชั้นวางสินค้าสูง</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/warehouse/IMG_7303.jpg (ต้นฉบับ: IMG_7303.jpeg) -->
+<img src="images/portfolio/warehouse/IMG_7303.jpg" alt="ติดตั้งพื้นเหล็กชั้นลอย" loading="lazy"><figcaption>ติดตั้งพื้นเหล็กชั้นลอย</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/warehouse/IMG_7304.jpg (ต้นฉบับ: IMG_7304.jpeg) -->
+<img src="images/portfolio/warehouse/IMG_7304.jpg" alt="งานติดตั้งบนนั่งร้านเหนือพื้นที่คลัง" loading="lazy"><figcaption>งานติดตั้งบนนั่งร้านเหนือพื้นที่คลัง</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/warehouse/IMG_7299.jpg (ต้นฉบับ: IMG_7299.jpeg) -->
+<img src="images/portfolio/warehouse/IMG_7299.jpg" alt="ทีมงานติดตั้งหน้างาน" loading="lazy"><figcaption>ทีมงานติดตั้งหน้างาน</figcaption></figure>
+    </div>
+    <h3 class="g-title" style="margin-top:46px">ติดตั้งระบบไฟฟ้านอกอาคาร</h3>
+    <p class="g-sub">งานติดตั้งท่อร้อยสายไฟและโครงสร้างรองรับสำหรับระบบไฟฟ้านอกอาคาร</p>
+    <!-- โฟลเดอร์รูปของกลุ่มนี้: images/portfolio/outdoor-electrical/ -->
+<div class="gallery">
+<figure class="g-item feat"><!-- รูป: images/portfolio/outdoor-electrical/IMG_7310.jpg (ต้นฉบับ: IMG_7310.jpeg) -->
+<img src="images/portfolio/outdoor-electrical/IMG_7310.jpg" alt="ท่อร้อยสายไฟตามแนวโครงเหล็กนอกอาคาร" loading="lazy"><figcaption>ท่อร้อยสายไฟตามแนวโครงเหล็กนอกอาคาร</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/outdoor-electrical/IMG_7308.jpg (ต้นฉบับ: IMG_7308.jpeg) -->
+<img src="images/portfolio/outdoor-electrical/IMG_7308.jpg" alt="ติดตั้งท่อร้อยสายไฟข้างถังเก็บ" loading="lazy"><figcaption>ติดตั้งท่อร้อยสายไฟข้างถังเก็บ</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/outdoor-electrical/IMG_7309.jpg (ต้นฉบับ: IMG_7309.jpeg) -->
+<img src="images/portfolio/outdoor-electrical/IMG_7309.jpg" alt="ท่อร้อยสายไฟแนวดิ่งบนโครงเหล็ก" loading="lazy"><figcaption>ท่อร้อยสายไฟแนวดิ่งบนโครงเหล็ก</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/outdoor-electrical/IMG_7307.jpg (ต้นฉบับ: IMG_7307.jpeg) -->
+<img src="images/portfolio/outdoor-electrical/IMG_7307.jpg" alt="แนวโครงเหล็กรางท่อระหว่างอาคาร" loading="lazy"><figcaption>แนวโครงเหล็กรางท่อระหว่างอาคาร</figcaption></figure>
+<figure class="g-item wide"><!-- รูป: images/portfolio/outdoor-electrical/IMG_7306.jpg (ต้นฉบับ: IMG_7306.jpeg) -->
+<img src="images/portfolio/outdoor-electrical/IMG_7306.jpg" alt="พื้นที่หน้างานนอกอาคาร" loading="lazy"><figcaption>พื้นที่หน้างานนอกอาคาร</figcaption></figure>
+    </div>
+    <h3 class="g-title" style="margin-top:46px">ติดตั้งระบบโซลาร์เซลล์ (Solar Cell)</h3>
+    <p class="g-sub">งานติดตั้งระบบโซลาร์เซลล์บนหลังคา และงานตรวจสอบระบบไฟฟ้า</p>
+    <!-- โฟลเดอร์รูปของกลุ่มนี้: images/portfolio/solar/ -->
+<div class="gallery">
+<figure class="g-item feat"><!-- รูป: images/portfolio/solar/IMG_7313.jpg (ต้นฉบับ: IMG_7313.jpeg) -->
+<img src="images/portfolio/solar/IMG_7313.jpg" alt="ติดตั้งแผงโซลาร์เซลล์บนหลังคาโรงงาน" style="object-position:center 62%" loading="lazy"><figcaption>ติดตั้งแผงโซลาร์เซลล์บนหลังคาโรงงาน</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/solar/IMG_7312.jpg (ต้นฉบับ: IMG_7312.jpeg) -->
+<img src="images/portfolio/solar/IMG_7312.jpg" alt="งานติดตั้งบนหลังคาโรงงาน" style="object-position:center 55%" loading="lazy"><figcaption>งานติดตั้งบนหลังคาโรงงาน</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/solar/IMG_7314.jpg (ต้นฉบับ: IMG_7314.jpeg) -->
+<img src="images/portfolio/solar/IMG_7314.jpg" alt="งานติดตั้งแนวสันหลังคา" style="object-position:center 30%" loading="lazy"><figcaption>งานติดตั้งแนวสันหลังคา</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/solar/IMG_7315.jpg (ต้นฉบับ: IMG_7315.jpeg) -->
+<img src="images/portfolio/solar/IMG_7315.jpg" alt="ตรวจวัดค่าทางไฟฟ้าหน้างาน" style="object-position:center 45%" loading="lazy"><figcaption>ตรวจวัดค่าทางไฟฟ้าหน้างาน</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/solar/IMG_7316.jpg (ต้นฉบับ: IMG_7316.jpeg) -->
+<img src="images/portfolio/solar/IMG_7316.jpg" alt="ตรวจสอบตู้ไฟและเบรกเกอร์" style="object-position:center 60%" loading="lazy"><figcaption>ตรวจสอบตู้ไฟและเบรกเกอร์</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/solar/IMG_7317.jpg (ต้นฉบับ: IMG_7317.jpeg) -->
+<img src="images/portfolio/solar/IMG_7317.jpg" alt="ต่อและตรวจสอบสายในตู้ไฟ" style="object-position:center 45%" loading="lazy"><figcaption>ต่อและตรวจสอบสายในตู้ไฟ</figcaption></figure>
+    </div>
+    <h3 class="g-title" style="margin-top:46px">ติดตั้งหุ่นยนต์ (Robot) พร้อมตู้คอนโทรล</h3>
+    <p class="g-sub">งานติดตั้งหุ่นยนต์อุตสาหกรรม พร้อมประกอบตู้คอนโทรลและเดินสายระบบควบคุม</p>
+    <!-- โฟลเดอร์รูปของกลุ่มนี้: images/portfolio/robot-control/ -->
+<div class="gallery">
+<figure class="g-item feat"><!-- รูป: images/portfolio/robot-control/IMG_7321.jpg (ต้นฉบับ: IMG_7321.jpeg) -->
+<img src="images/portfolio/robot-control/IMG_7321.jpg" alt="ติดตั้งหุ่นยนต์พร้อมตู้คอนโทรลไฟฟ้า" style="object-position:center 50%" loading="lazy"><figcaption>ติดตั้งหุ่นยนต์พร้อมตู้คอนโทรลไฟฟ้า</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/robot-control/IMG_7318.jpg (ต้นฉบับ: IMG_7318.jpeg) -->
+<img src="images/portfolio/robot-control/IMG_7318.jpg" alt="ติดตั้งหุ่นยนต์อุตสาหกรรม" style="object-position:center 45%" loading="lazy"><figcaption>ติดตั้งหุ่นยนต์อุตสาหกรรม</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/robot-control/IMG_7323.jpg (ต้นฉบับ: IMG_7323.jpeg) -->
+<img src="images/portfolio/robot-control/IMG_7323.jpg" alt="ตู้คอนโทรล ระบบ I/O และการเดินสาย" style="object-position:center 25%" loading="lazy"><figcaption>ตู้คอนโทรล ระบบ I/O และการเดินสาย</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/robot-control/IMG_7320.jpg (ต้นฉบับ: IMG_7320.jpeg) -->
+<img src="images/portfolio/robot-control/IMG_7320.jpg" alt="งานติดตั้งและเดินสายหุ่นยนต์" style="object-position:center 45%" loading="lazy"><figcaption>งานติดตั้งและเดินสายหุ่นยนต์</figcaption></figure>
+<figure class="g-item wide"><!-- รูป: images/portfolio/robot-control/IMG_7322.jpg (ต้นฉบับ: IMG_7322.jpeg) -->
+<img src="images/portfolio/robot-control/IMG_7322.jpg" alt="ตู้ควบคุม PLC เดินสายและติดป้ายเรียบร้อย" style="object-position:center 40%" loading="lazy"><figcaption>ตู้ควบคุม PLC เดินสายและติดป้ายเรียบร้อย</figcaption></figure>
+    </div>
+    <h3 class="g-title" style="margin-top:46px">อื่นๆ</h3>
+    <p class="g-sub">งานเสริมอื่นๆ เช่น งานปรับปรุงพื้นที่ งานระบบไฟฟ้า และงานยกติดตั้งด้วยรถเครน</p>
+    <!-- โฟลเดอร์รูปของกลุ่มนี้: images/portfolio/others/ -->
+<div class="gallery">
+<figure class="g-item feat"><!-- รูป: images/portfolio/others/IMG_7329.jpg (ต้นฉบับ: IMG_7329.jpeg) -->
+<img src="images/portfolio/others/IMG_7329.jpg" alt="งานยกติดตั้งด้วยรถเครน" style="object-position:center 60%" loading="lazy"><figcaption>งานยกติดตั้งด้วยรถเครน</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/others/IMG_7330.jpg (ต้นฉบับ: IMG_7330.jpeg) -->
+<img src="images/portfolio/others/IMG_7330.jpg" alt="งานขนย้ายและยกอุปกรณ์หน้างาน" style="object-position:center 55%" loading="lazy"><figcaption>งานขนย้ายและยกอุปกรณ์หน้างาน</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/others/IMG_7324.jpg (ต้นฉบับ: IMG_7324.jpeg) -->
+<img src="images/portfolio/others/IMG_7324.jpg" alt="งานปรับพื้นคอนกรีต" style="object-position:center 70%" loading="lazy"><figcaption>งานปรับพื้นคอนกรีต</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/others/IMG_7325.jpg (ต้นฉบับ: IMG_7325.jpeg) -->
+<img src="images/portfolio/others/IMG_7325.jpg" alt="งานภายในโรงงานเหนือแนวฝ้า" style="object-position:center 55%" loading="lazy"><figcaption>งานภายในโรงงานเหนือแนวฝ้า</figcaption></figure>
+<figure class="g-item wide"><!-- รูป: images/portfolio/others/IMG_7326.jpg (ต้นฉบับ: IMG_7326.jpeg) -->
+<img src="images/portfolio/others/IMG_7326.jpg" alt="งานบนที่สูงภายในโรงงาน" style="object-position:center 38%" loading="lazy"><figcaption>งานบนที่สูงภายในโรงงาน</figcaption></figure>
+<figure class="g-item "><!-- รูป: images/portfolio/others/IMG_7327.jpg (ต้นฉบับ: IMG_7327.jpeg) -->
+<img src="images/portfolio/others/IMG_7327.jpg" alt="งานตู้ไฟและรางเดินสาย" style="object-position:center 70%" loading="lazy"><figcaption>งานตู้ไฟและรางเดินสาย</figcaption></figure>
+<figure class="g-item wide"><!-- รูป: images/portfolio/others/IMG_7328.jpg (ต้นฉบับ: IMG_7328.jpeg) -->
+<img src="images/portfolio/others/IMG_7328.jpg" alt="งานเดินสายและรางสายบนที่สูง" style="object-position:center 40%" loading="lazy"><figcaption>งานเดินสายและรางสายบนที่สูง</figcaption></figure>
+    </div>
+  </div>
+</section>
+<div class="lightbox" id="lightbox"><img alt=""></div>
+
+<section class="section why" id="why">
+  <div class="container why-grid">
+    <div class="why-photo"><!-- รูป: images/about/team.jpg (ต้นฉบับ: IMG_7297.jpeg) -->
+<img src="images/about/team.jpg" alt="ทีมงาน TNP Fight Construction"></div>
+    <div>
+      <div class="kicker">Why Choose Us</div>
+      <h2 class="section-title">ทำไมต้องเลือกเรา</h2>
+      <div class="why-list">
+        <div class="why-item"><b>✓</b>ทีมงานมืออาชีพ มีประสบการณ์ตรงครบทุกด้าน</div>
+        <div class="why-item"><b>✓</b>ควบคุมคุณภาพงานทุกขั้นตอนตามหลักวิศวกรรม</div>
+        <div class="why-item"><b>✓</b>ใช้วัสดุและอุปกรณ์ที่มีคุณภาพ ได้มาตรฐานสากล</div>
+        <div class="why-item"><b>✓</b>ประเมินราคาชัดเจน ตรวจสอบได้</div>
+        <div class="why-item"><b>✓</b>มีการรับประกันคุณภาพงานหลังส่งมอบ</div>
+        <div class="why-item"><b>✓</b>พร้อมให้คำปรึกษาและบริการตลอดอายุการใช้งาน</div>
+      </div>
     </div>
   </div>
 </section>
@@ -208,6 +371,10 @@ footer strong{color:white}
   document.getElementById('next').addEventListener('click', () => { showSlide(current + 1); restart(); });
   dots.forEach((dot, i) => dot.addEventListener('click', () => { showSlide(i); restart(); }));
   document.getElementById('year').textContent = new Date().getFullYear();
+  const lb=document.getElementById('lightbox'),lbImg=lb.querySelector('img');
+  document.querySelectorAll('.g-item').forEach(f=>f.addEventListener('click',()=>{lbImg.src=f.querySelector('img').src;lb.classList.add('open')}));
+  lb.addEventListener('click',()=>lb.classList.remove('open'));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open')});
   restart();
 })();
 </script>
