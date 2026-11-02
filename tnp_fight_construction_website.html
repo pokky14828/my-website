@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071a33">
+<meta name="description" content="TNP Fight Construction Co., Ltd. รับเหมาต่อเติมโรงงาน ติดตั้งตู้คอนโทรลไฟฟ้า และออกแบบเครื่องจักรระบบอัตโนมัติ">
+<title>TNP Fight Construction | Industrial Solutions</title>
+<style>
+:root{--navy:#071a33;--blue:#155eef;--cyan:#31c5f4;--ink:#132238;--muted:#637187;--paper:#f4f7fb;--white:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65}
+a{color:inherit;text-decoration:none}
+.container{width:min(1160px,92%);margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(7,26,51,.94);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.12);color:white}
+.nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.5px}
+.logo{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,var(--cyan),var(--blue));display:grid;place-items:center;color:white;font-size:18px;font-weight:900;box-shadow:0 8px 24px #155eef55}
+.brand small{display:block;color:#b6c5dc;font-size:10px;letter-spacing:1.7px;font-weight:600}
+nav{display:flex;align-items:center;gap:26px;font-size:14px;color:#e0e8f5}
+nav a:hover{color:var(--cyan)}
+.nav-cta,.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:999px;padding:12px 20px;font-weight:700;font-size:14px;transition:.2s}
+.nav-cta,.btn-primary{background:var(--blue);color:white;box-shadow:0 10px 24px #155eef40}
+.nav-cta:hover,.btn-primary:hover{background:#0849cf;transform:translateY(-2px)}
+.hero{position:relative;overflow:hidden;background:radial-gradient(circle at 75% 25%,#123d75 0,transparent 38%),linear-gradient(120deg,#06152a 0%,#0a2344 60%,#0b3155 100%);color:white;padding:76px 0 84px}
+.hero:before{content:"";position:absolute;width:500px;height:500px;border:1px solid #ffffff12;border-radius:50%;right:-160px;top:-220px;box-shadow:0 0 0 45px #ffffff06,0 0 0 90px #ffffff04}
+.hero-grid{position:relative;display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:#9de9ff;background:#31c5f41a;border:1px solid #31c5f44d;border-radius:999px;padding:7px 13px;font-size:12px;font-weight:700;letter-spacing:.7px}
+.dot{width:7px;height:7px;border-radius:50%;background:#45d7ff;box-shadow:0 0 0 5px #45d7ff20}
+h1{font-size:clamp(34px,4.3vw,57px);line-height:1.18;letter-spacing:-1px;margin:22px 0}
+h1 span{color:#54d8ff}
+.hero-copy{max-width:550px;color:#c0cee0;font-size:16px;margin:0 0 27px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn-outline{border:1px solid #ffffff55;color:white}
+.btn-outline:hover{background:#ffffff12}
+.trust{display:flex;gap:24px;flex-wrap:wrap;margin-top:35px;color:#b9c8db;font-size:12px}
+.trust span{display:flex;gap:8px;align-items:center}
+.check{color:#4ed8ff;font-weight:900}
+.slider{position:relative;min-height:440px;border:1px solid #ffffff25;border-radius:28px;padding:14px;background:linear-gradient(145deg,#ffffff20,#ffffff05);box-shadow:0 28px 80px #0005;overflow:hidden}
+.slide{display:none;min-height:410px;height:100%;border-radius:19px;overflow:hidden;position:relative;background:#102b4b}
+.slide.active{display:flex;animation:fade .45s ease}
+@keyframes fade{from{opacity:.4;transform:translateX(8px)}to{opacity:1;transform:translateX(0)}}
+.slide-art{position:absolute;inset:0;overflow:hidden;background:linear-gradient(145deg,#0a2a4b,#135b8d)}
+.slide-art:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#06152af2 0%,#06152a40 65%,transparent 100%);z-index:1}
+.blueprint{position:absolute;inset:0;opacity:.32;background-image:linear-gradient(#8bdfff22 1px,transparent 1px),linear-gradient(90deg,#8bdfff22 1px,transparent 1px);background-size:27px 27px;transform:perspective(500px) rotateX(8deg) scale(1.15)}
+.art-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);width:190px;height:190px;color:#8be6ff;filter:drop-shadow(0 10px 22px #00162e88)}
+.art-icon svg{width:100%;height:100%}
+.slide-copy{position:relative;z-index:2;align-self:flex-end;padding:27px 27px 26px;width:100%}
+.slide-num{font-size:11px;font-weight:800;letter-spacing:2px;color:#70e1ff}
+.slide h2{font-size:25px;line-height:1.35;margin:8px 0 10px}
+.slide p{font-size:13px;color:#c7d8e9;margin:0;max-width:410px}
+.slide-tag{display:inline-block;margin-top:15px;border:1px solid #80ddff77;background:#0d8db72b;color:#b9f1ff;border-radius:999px;padding:5px 10px;font-size:11px}
+.slider-controls{position:absolute;z-index:5;right:27px;top:27px;display:flex;gap:8px}
+.circle-btn{width:38px;height:38px;border:1px solid #ffffff55;background:#06152a88;color:white;border-radius:50%;font-size:18px;cursor:pointer}
+.circle-btn:hover{background:var(--blue)}
+.slide-dots{display:flex;gap:7px;position:absolute;z-index:5;bottom:29px;right:29px}
+.slide-dots button{width:7px;height:7px;padding:0;border:0;border-radius:99px;background:#ffffff66;cursor:pointer;transition:.2s}
+.slide-dots button.active{width:24px;background:#52dcff}
+.section{padding:82px 0}
+.section-head{text-align:center;max-width:720px;margin:0 auto 40px}
+.kicker{color:var(--blue);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+h2.section-title{font-size:clamp(28px,3vw,40px);line-height:1.25;margin:10px 0 13px;color:var(--navy)}
+.section-head p{margin:0;color:var(--muted)}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.service-card{background:white;border:1px solid #e5ebf3;border-radius:20px;padding:27px;box-shadow:0 12px 35px #142d4a08;transition:.25s}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 20px 42px #142d4a12;border-color:#c4dcff}
+.service-icon{width:54px;height:54px;display:grid;place-items:center;border-radius:16px;background:#eaf3ff;color:var(--blue);margin-bottom:22px}
+.service-icon svg{width:28px;height:28px}
+.service-card .number{color:#9aa9bd;font-size:12px;font-weight:800;letter-spacing:1px}
+.service-card h3{font-size:19px;line-height:1.5;margin:8px 0 12px;color:var(--navy)}
+.service-card p{font-size:14px;color:var(--muted);margin:0 0 18px}
+.service-card ul{padding:0;margin:0;list-style:none;color:#33445c;font-size:13px}
+.service-card li{margin:8px 0;display:flex;gap:9px}
+.service-card li:before{content:"✓";font-weight:900;color:var(--blue)}
+.band{padding:54px 0;background:#eaf1fa}
+.band-inner{display:flex;align-items:center;justify-content:space-between;gap:25px}
+.band h2{font-size:clamp(24px,3vw,34px);line-height:1.3;color:var(--navy);margin:0 0 9px}
+.band p{margin:0;color:var(--muted)}
+.contact{background:white}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:start}
+.contact-intro h2{font-size:38px;line-height:1.2;color:var(--navy);margin:12px 0}
+.contact-intro p{color:var(--muted)}
+.contact-list{display:grid;gap:13px;margin-top:26px}
+.contact-item{display:flex;gap:14px;align-items:flex-start;padding:15px;border:1px solid #e8edf4;border-radius:15px;background:#fbfcfe}
+.contact-item .mini-icon{width:40px;height:40px;flex-shrink:0;border-radius:12px;background:#eaf3ff;color:var(--blue);display:grid;place-items:center;font-size:18px}
+.contact-item strong{display:block;color:var(--navy);font-size:13px;margin-bottom:2px}
+.contact-item span,.contact-item a{font-size:14px;color:#53647a;overflow-wrap:anywhere}
+.contact-card{border-radius:24px;background:var(--navy);padding:30px;color:white;position:relative;overflow:hidden}
+.contact-card:after{content:"TNP";position:absolute;right:-12px;bottom:-42px;font-size:120px;font-weight:900;color:#ffffff08;pointer-events:none}
+.contact-card h3{font-size:23px;margin:0 0 8px}
+.contact-card>p{color:#bac8dc;font-size:14px;margin:0 0 22px}
+.contact-card .btn{width:100%;margin-top:10px}
+.contact-card .btn-outline{border-color:#ffffff44}
+footer{background:#041124;color:#9caec5;padding:23px 0;font-size:12px}
+.footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer strong{color:white}
+@media(max-width:850px){nav{gap:13px}.nav-cta{display:none}.hero-grid{grid-template-columns:1fr;gap:35px}.hero{padding:55px 0}.slider{min-height:400px}.slide{min-height:370px}.services{grid-template-columns:1fr}.service-card{padding:24px}.contact-grid{grid-template-columns:1fr;gap:30px}.band-inner{align-items:flex-start;flex-direction:column}}
+@media(max-width:520px){.nav{min-height:68px}.brand{font-size:13px}.brand small{font-size:8px}.logo{width:39px;height:39px}nav a:not(:last-child){display:none}.hero{padding:43px 0 55px}h1{font-size:36px}.hero-copy{font-size:14px}.slider{padding:9px;min-height:370px}.slide{min-height:350px}.slide h2{font-size:22px}.slide-copy{padding:20px}.slider-controls{top:18px;right:18px}.slide-dots{bottom:23px;right:22px}.section{padding:60px 0}.contact-card{padding:24px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home" aria-label="TNP Fight Construction หน้าแรก">
+      <span class="logo">TNP</span><span>TNP FIGHT CONSTRUCTION<small>INDUSTRIAL SOLUTIONS</small></span>
+    </a>
+    <nav aria-label="เมนูหลัก">
+      <a href="#home">หน้าแรก</a><a href="#services">บริการของเรา</a><a href="#contact">ติดต่อเรา</a>
+    </nav>
+    <a class="nav-cta" href="tel:0929239242">☎ ติดต่อสอบถาม</a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> INDUSTRIAL CONSTRUCTION & AUTOMATION</div>
+      <h1>โซลูชันโรงงาน<br><span>ครบจบในที่เดียว</span></h1>
+      <p class="hero-copy">TNP Fight Construction ให้บริการรับเหมาต่อเติมโรงงานอุตสาหกรรม งานติดตั้งและออกแบบตู้คอนโทรลไฟฟ้า รวมถึงออกแบบเครื่องจักรระบบอัตโนมัติ เพื่อสนับสนุนการทำงานของโรงงานอย่างมีประสิทธิภาพ</p>
+      <div class="hero-actions"><a class="btn btn-primary" href="#services">สำรวจบริการของเรา ↗</a><a class="btn btn-outline" href="#contact">ปรึกษาโครงการ</a></div>
+      <div class="trust"><span><b class="check">✓</b> งานก่อสร้างอุตสาหกรรม</span><span><b class="check">✓</b> ระบบไฟฟ้าและควบคุม</span><span><b class="check">✓</b> ระบบอัตโนมัติ</span></div>
+    </div>
+    <div class="slider" aria-label="สไลด์บริการของบริษัท">
+      <div class="slider-controls"><button class="circle-btn" id="prev" aria-label="สไลด์ก่อนหน้า">‹</button><button class="circle-btn" id="next" aria-label="สไลด์ถัดไป">›</button></div>
+      <article class="slide active">
+        <div class="slide-art"><div class="blueprint"></div><div class="art-icon"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3"><path d="M25 165V70L100 25l75 45v95"/><path d="M15 165h170M45 165v-58h36v58M105 87h45v30h-45zM105 132h45v33h-45zM45 70h25v22H45z"/><path d="M20 55l80-48 80 48M55 38v-15h20v3"/></svg></div></div>
+        <div class="slide-copy"><span class="slide-num">GROUP 01 / CONSTRUCTION</span><h2>ต่อเติมและปรับปรุง<br>พื้นที่โรงงานอุตสาหกรรม</h2><p>วางแผนพื้นที่และงานต่อเติมให้สอดคล้องกับการใช้งานจริงของโรงงาน</p><span class="slide-tag">Industrial Facility</span></div>
+      </article>
+      <article class="slide">
+        <div class="slide-art" style="background:linear-gradient(145deg,#10294b,#176d9a)"><div class="blueprint"></div><div class="art-icon"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3"><rect x="38" y="25" width="124" height="150" rx="7"/><rect x="53" y="42" width="94" height="32" rx="3"/><circle cx="66" cy="58" r="4"/><circle cx="80" cy="58" r="4"/><path d="M55 91h90M55 104h90M55 117h42M55 143h90"/><circle cx="129" cy="130" r="10"/><path d="M129 120v20M119 130h20"/></svg></div></div>
+        <div class="slide-copy"><span class="slide-num">GROUP 02 / ELECTRICAL</span><h2>ออกแบบและติดตั้ง<br>ตู้คอนโทรลไฟฟ้า</h2><p>งานประกอบตู้ควบคุมและติดตั้งระบบไฟฟ้าสำหรับโรงงานอุตสาหกรรม</p><span class="slide-tag">Control Panel & Electrical</span></div>
+      </article>
+      <article class="slide">
+        <div class="slide-art" style="background:linear-gradient(145deg,#092644,#165c78)"><div class="blueprint"></div><div class="art-icon"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3"><path d="M30 165h140M48 165V92h36v73M116 165V52h35v113"/><circle cx="65" cy="74" r="18"/><path d="M65 56V42M47 74H32M83 74h15M65 92v14M98 42h18M98 42v25h18M133 52V30h25"/><path d="M48 115h36M48 133h36M116 91h35M116 110h35M116 129h35"/></svg></div></div>
+        <div class="slide-copy"><span class="slide-num">GROUP 03 / AUTOMATION</span><h2>ออกแบบเครื่องจักร<br>และระบบอัตโนมัติ</h2><p>พัฒนาแนวทางเครื่องจักรและระบบอัตโนมัติเพื่อสนับสนุนกระบวนการผลิต</p><span class="slide-tag">Machine Design & Automation</span></div>
+      </article>
+      <div class="slide-dots"><button class="active" aria-label="ไปสไลด์ 1"></button><button aria-label="ไปสไลด์ 2"></button><button aria-label="ไปสไลด์ 3"></button></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head"><div class="kicker">Our Services</div><h2 class="section-title">บริการของเรา</h2><p>รองรับงานอุตสาหกรรมตั้งแต่งานพื้นที่โรงงาน ระบบไฟฟ้าควบคุม ไปจนถึงงานออกแบบเครื่องจักรอัตโนมัติ</p></div>
+    <div class="services">
+      <article class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V7l9-4 9 4v14M2 21h20M7 21v-7h4v7M14 10h3M14 14h3M7 8h3"/></svg></div>
+        <div class="number">GROUP 01</div><h3>รับเหมาต่อเติมภายในโรงงานอุตสาหกรรม</h3>
+        <p>บริการงานต่อเติมและปรับปรุงพื้นที่ภายในโรงงาน ให้เหมาะสมกับรูปแบบการผลิตและการใช้งาน</p>
+        <ul><li>งานต่อเติมและปรับปรุงพื้นที่</li><li>งานก่อสร้างภายในโรงงาน</li><li>ปรับพื้นที่ให้สอดคล้องกับการใช้งาน</li></ul>
+      </article>
+      <article class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M7 6h10M7 10h10M7 14h4M7 18h10"/><circle cx="16" cy="14" r="1"/></svg></div>
+        <div class="number">GROUP 02</div><h3>รับเหมา ติดตั้ง ออกแบบ และประกอบตู้คอนโทรลไฟฟ้า</h3>
+        <p>งานตู้ควบคุมไฟฟ้าและระบบไฟฟ้าสำหรับการใช้งานในโรงงานอุตสาหกรรม</p>
+        <ul><li>ออกแบบและประกอบตู้คอนโทรล</li><li>ติดตั้งระบบไฟฟ้าในโรงงาน</li><li>งานควบคุมอุปกรณ์และเครื่องจักร</li></ul>
+      </article>
+      <article class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 21V9h5v12M15 21V3h5v18M2 21h20M9 12h6M9 16h6M12 12V7h3"/><circle cx="12" cy="5" r="2"/></svg></div>
+        <div class="number">GROUP 03</div><h3>รับเหมาออกแบบเครื่องจักรระบบอัตโนมัติ</h3>
+        <p>ออกแบบแนวทางเครื่องจักรและระบบอัตโนมัติให้สอดคล้องกับกระบวนการทำงานของโรงงาน</p>
+        <ul><li>ออกแบบเครื่องจักรอุตสาหกรรม</li><li>แนวทางระบบอัตโนมัติ</li><li>สนับสนุนการพัฒนากระบวนการผลิต</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="container band-inner"><div><h2>มีแผนงานสำหรับโรงงานของคุณหรือไม่?</h2><p>ติดต่อเราเพื่อพูดคุยรายละเอียดและขอบเขตของโครงการเบื้องต้น</p></div><a class="btn btn-primary" href="#contact">ติดต่อทีมงาน ↗</a></div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-intro"><div class="kicker">Contact Us</div><h2>ติดต่อเรา</h2><p>สอบถามข้อมูลบริการหรือนัดหมายเพื่อพูดคุยเกี่ยวกับโครงการของคุณ ติดต่อบริษัท TNP Fight Construction ได้ตามช่องทางด้านล่าง</p>
+      <div class="contact-list">
+        <div class="contact-item"><div class="mini-icon">👤</div><div><strong>ผู้ติดต่อ</strong><span>THANAPHAT KHAOCHROEN (ธนภัทร ขาวเจริญ)</span></div></div>
+        <div class="contact-item"><div class="mini-icon">☎</div><div><strong>โทรศัพท์</strong><a href="tel:0929239242">092-923-9242</a></div></div>
+        <div class="contact-item"><div class="mini-icon">✉</div><div><strong>อีเมล</strong><a href="mailto:thanphat.kcr@gmail.com">thanphat.kcr@gmail.com</a></div></div>
+        <div class="contact-item"><div class="mini-icon">⌖</div><div><strong>ที่อยู่บริษัท</strong><span>215/27 หมู่ที่ 2 ตำบลบ่อวิน อำเภอศรีราชา จังหวัดชลบุรี 20230</span></div></div>
+      </div>
+    </div>
+    <aside class="contact-card">
+      <h3>TNP Fight Construction Co., Ltd.</h3>
+      <p>บริษัท ทีเอ็นพี ไฟท์ คอนสตรัคชั่น จำกัด<br>งานก่อสร้างอุตสาหกรรม • ระบบไฟฟ้า • ระบบอัตโนมัติ</p>
+      <p><strong style="color:#fff">เลขประจำตัวผู้เสียภาษี</strong><br><span style="color:#c3d2e5">0205568047632</span></p>
+      <a class="btn btn-primary" href="tel:0929239242">☎ โทร 092-923-9242</a>
+      <a class="btn btn-outline" href="mailto:thanphat.kcr@gmail.com">✉ ส่งอีเมลสอบถาม</a>
+    </aside>
+  </div>
+</section>
+</main>
+<footer><div class="container footer-inner"><span><strong>TNP FIGHT CONSTRUCTION CO., LTD.</strong> — Industrial Solutions</span><span>© <span id="year"></span> TNP Fight Construction. All rights reserved.</span></div></footer>
+<script>
+(() => {
+  const slides = [...document.querySelectorAll('.slide')];
+  const dots = [...document.querySelectorAll('.slide-dots button')];
+  let current = 0;
+  let timer;
+  function showSlide(index) {
+    current = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => slide.classList.toggle('active', i === current));
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+  }
+  function restart() { clearInterval(timer); timer = setInterval(() => showSlide(current + 1), 5000); }
+  document.getElementById('prev').addEventListener('click', () => { showSlide(current - 1); restart(); });
+  document.getElementById('next').addEventListener('click', () => { showSlide(current + 1); restart(); });
+  dots.forEach((dot, i) => dot.addEventListener('click', () => { showSlide(i); restart(); }));
+  document.getElementById('year').textContent = new Date().getFullYear();
+  restart();
+})();
+</script>
+</body>
+</html>
